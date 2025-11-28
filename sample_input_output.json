@@ -1,0 +1,30 @@
+[
+  {
+    "input_claim": "The FAME II subsidy for electric vehicles is valid until March 31, 2025.",
+    "expected_output": {
+      "verdict": "✅ True",
+      "reasoning": "The retrieved evidence explicitly confirms that the FAME II subsidy for electric vehicles has been extended until March 31, 2025.",
+      "evidence": [
+        "The FAME II subsidy for electric vehicles has been extended until March 31, 2025, with a focus on public transport."
+      ]
+    }
+  },
+  {
+    "input_claim": "The government has announced free electricity for all farmers starting July 2025.",
+    "expected_output": {
+      "verdict": "❌ False",
+      "reasoning": "The retrieved evidence explicitly states that there is no current announcement regarding free electricity for all farmers starting in July 2025.",
+      "evidence": [
+        "There is no current announcement regarding free electricity for all farmers starting in July 2025; electricity is a state subject."
+      ]
+    }
+  },
+  {
+    "input_claim": "The dinosaurs went extinct 65 million years ago.",
+    "expected_output": {
+      "verdict": "🤷‍♂️ Unverifiable (Vague/No Data)",
+      "reasoning": "No relevant facts found in the database. The closest match had a low relevance score (0.91).",
+      "evidence": []
+    }
+  }
+]
