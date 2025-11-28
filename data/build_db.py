@@ -4,7 +4,7 @@ import chromadb
 from chromadb.utils import embedding_functions
 
 # --- Configuration ---
-# Ensure these paths match what you use in src/retrieval_engine.py
+
 DATA_PATH = "data/facts.csv"
 DB_PATH = "./chroma_db"
 COLLECTION_NAME = "government_facts"
@@ -42,7 +42,6 @@ def build_database():
     client = chromadb.PersistentClient(path=DB_PATH)
     
     # Use default embedding function (all-MiniLM-L6-v2)
-    # This automatically downloads the model if not present
     ef = embedding_functions.SentenceTransformerEmbeddingFunction(model_name="all-MiniLM-L6-v2")
     
     # 3. Create or Reset Collection
