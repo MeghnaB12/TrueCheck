@@ -144,11 +144,10 @@ TrueCheck/
 ⚙️ Setup & Installation
 1. Prerequisites
 
-Python 3.9+
+   * Python 3.9+
+   * Ollama installed and running.
 
-Ollama installed and running.
-
-2. Clone & Install
+3. Clone & Install
 
 git clone [https://github.com/MeghnaB12/TrueCheck.git](https://github.com/MeghnaB12/TrueCheck.git)
 cd TrueCheck
