@@ -147,29 +147,37 @@ TrueCheck/
    * Python 3.9+
    * Ollama installed and running.
 
-3. Clone & Install
+2. Clone & Install
 
-git clone [https://github.com/MeghnaB12/TrueCheck.git](https://github.com/MeghnaB12/TrueCheck.git)
+```
+git clone https://github.com/MeghnaB12/TrueCheck.git
 cd TrueCheck
 pip install -r requirements.txt
 python -m spacy download en_core_web_sm
+```
 
 3. Start Local LLM
 
 Ensure your local Ollama instance is running with the Mistral model.
 
+```
 ollama run mistral
 # Keep this terminal window open in the background
+```
 
 4. Build the Database
 
 The Vector Database is not uploaded to GitHub (to keep the repo clean). Build it locally from the CSV:
 
+```
 python build_db.py
 # Output: ✅ Success! Database built at ./chroma_db
+```
 
 5. Run the App
+```
 streamlit run app.py
+```
 
 The app will launch in your browser at http://localhost:8501.
 
