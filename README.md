@@ -45,17 +45,17 @@ graph TD
     
     G --> H[LLM Reasoner (Mistral)]
     H --> I[Final Verdict + Reasoning]
-
-🛠️ Tech Stack
-
 ```
-Component,Technology,Role
-Frontend,Streamlit,Interactive UI & Confidence Visualization
-Embeddings,all-MiniLM-L6-v2,SentenceTransformers for semantic search
-Vector DB,ChromaDB,Persistent storage for trusted facts
-LLM,Mistral (via Ollama),Reasoning agent (can be swapped for GPT-4)
-NLP,spaCy (en_core_web_sm),Named Entity Recognition (NER)
 
+## 🛠️ Tech Stack
+
+| Component | Technology | Role |
+| :--- | :--- | :--- |
+| **Frontend** | Streamlit | Interactive UI & Confidence Visualization |
+| **Embeddings** | `all-MiniLM-L6-v2` | SentenceTransformers for semantic search |
+| **Vector DB** | ChromaDB | Persistent storage for trusted facts |
+| **LLM** | Mistral (via Ollama) | Reasoning agent (can be swapped for GPT-4) |
+| **NLP** | spaCy (`en_core_web_sm`) | Named Entity Recognition (NER) |
 
 ---
 ```
