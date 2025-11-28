@@ -109,18 +109,6 @@ Here is the final, complete README.md file. You can copy this entire block direc
 
 I have updated the Setup Instructions to include the new build_db.py script and fixed the image paths to point to your screenshots/ folder.
 
-Markdown
-# 🔍 TrueCheck: AI-Powered RAG Fact Verification System
-
-![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg) 
-![Python](https://img.shields.io/badge/Python-3.9%2B-yellow) 
-![Streamlit](https://img.shields.io/badge/Frontend-Streamlit-red) 
-![Ollama](https://img.shields.io/badge/LLM-Mistral%20%2F%20Ollama-orange) 
-![ChromaDB](https://img.shields.io/badge/Vector%20DB-ChromaDB-purple)
-
-**TrueCheck** is a Retrieval-Augmented Generation (RAG) system engineered to verify news claims against trusted datasets (e.g., Government Policies). It features a **local-first** hybrid pipeline using **spaCy** for entity extraction, **ChromaDB** for semantic retrieval, and **Mistral (Ollama)** for logical reasoning.
-
-> **Goal:** To build a cost-optimized, privacy-preserving AI agent that filters "unverifiable" claims before wasting expensive LLM compute.
 
 ---
 
@@ -140,6 +128,7 @@ TrueCheck/
     ├── retrieval_engine.py# ChromaDB Vector Search Logic
     └── verifier_llm.py    # LLM Verification Agent
 ```
+---
 
 ⚙️ Setup & Installation
 1. Prerequisites
@@ -181,14 +170,13 @@ streamlit run app.py
 
 The app will launch in your browser at http://localhost:8501.
 
+---
+
 🧪 How to Test
+
 Try these inputs based on the sample data/facts.csv:
 
-Likely True: "The government provides free electricity to farmers."
+* Likely True: "The government provides free electricity to farmers."
+* Likely False: "The government has banned all electric vehicles in 2025."
+* Unverifiable: "Aliens landed in Mumbai yesterday." (Should trigger the threshold filter).
 
-Likely False: "The government has banned all electric vehicles in 2025."
-
-Unverifiable: "Aliens landed in Mumbai yesterday." (Should trigger the threshold filter).
-
-📜 License
-Distributed under the Apache 2.0 License. See LICENSE for more information.
