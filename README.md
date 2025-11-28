@@ -139,6 +139,7 @@ TrueCheck/
     ├── extractor.py       # spaCy Entity Extraction Logic
     ├── retrieval_engine.py# ChromaDB Vector Search Logic
     └── verifier_llm.py    # LLM Verification Agent
+```
 
 ⚙️ Setup & Installation
 1. Prerequisites
@@ -171,7 +172,7 @@ python build_db.py
 5. Run the App
 streamlit run app.py
 
-he app will launch in your browser at http://localhost:8501.
+The app will launch in your browser at http://localhost:8501.
 
 🧪 How to Test
 Try these inputs based on the sample data/facts.csv:
