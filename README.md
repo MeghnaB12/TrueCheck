@@ -1,66 +1,30 @@
-# TrueCheck
-🔍 TrueCheck: LLM-Powered RAG Fact Checker
+# 🔍 TrueCheck: LLM-Powered RAG Fact Checker
 
-📌 Project Overview
+![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg) ![Python](https://img.shields.io/badge/Python-3.9%2B-yellow) ![Streamlit](https://img.shields.io/badge/Frontend-Streamlit-red) ![Ollama](https://img.shields.io/badge/LLM-Mistral%20%2F%20Ollama-orange)
 
-TrueCheck is a Retrieval-Augmented Generation (RAG) system designed to verify claims against a trusted knowledge base of Indian Government policies. It features a hybrid pipeline using spaCy for entity extraction, ChromaDB for semantic retrieval, and a Local LLM (Mistral via Ollama) for reasoning and verification.
+## 📌 Project Overview
 
-🚀 Key Features
+**TrueCheck** is a Retrieval-Augmented Generation (RAG) system designed to verify claims against a trusted knowledge base of Indian Government policies. It features a hybrid pipeline using **spaCy** for entity extraction, **ChromaDB** for semantic retrieval, and a **Local LLM** (Mistral via Ollama) for reasoning and verification.
 
-Strict Verification: Classifies claims as ✅ True, ❌ False, or 🤷‍♂️ Unverifiable.
+---
 
-Cost-Optimized: Implements a Relevance Score Threshold (0.5) to filter out vague/unrelated claims before calling the LLM, saving compute resources.
+## 🚀 Key Features
 
-Local & Privacy-First: Fully capable of running offline using Ollama (Mistral) and SentenceTransformers.
+* ✅ **Strict Verification:** Classifies claims clearly as **True**, **False**, or **Unverifiable**.
+* ⚡ **Cost-Optimized:** Implements a **Relevance Score Threshold (0.5)** to filter out vague or unrelated claims *before* calling the LLM, saving compute resources and reducing latency.
+* 🔒 **Local & Privacy-First:** Fully capable of running offline using **Ollama (Mistral)** and **SentenceTransformers**, ensuring data stays local.
+* 🧠 **Transparent Logic:** Displays the exact retrieved evidence and the specific "Distance Score" for every query to ensure explainability.
 
-Transparent Logic: Displays the exact retrieved evidence and the "Distance Score" for every query.
+---
 
-🛠️ Tech Stack
+## 🧪 How It Works (Pipeline)
 
-Frontend: Streamlit
-
-Embeddings: all-MiniLM-L6-v2 (SentenceTransformers)
-
-Vector DB: ChromaDB (Persistent storage)
-
-LLM: Mistral (via Ollama) or GPT-4o-mini (Configurable)
-
-NLP: spaCy (en_core_web_sm)
-
-⚙️ Setup Instructions
-
-Prerequisites
-Python 3.9+
-
-Ollama installed and running.
-
-Install Dependencies
-pip install -r requirements.txt python -m spacy download en_core_web_sm
-
-Start Local LLM
-Ensure your local Ollama instance is running with the Mistral model:
-
-ollama run mistral
-
-(Keep this terminal window open)
-
-Run the Application
-streamlit run app.py
-
-The app will launch at http://localhost:8501.
-
-📂 Project Structure
-
-fact_checker_assignment/ ├── app.py # Main Streamlit UI application ├── .env # Configuration (API Keys if using OpenAI) ├── requirements.txt # Python dependencies ├── README.md # Documentation ├── data/ │ └── facts.csv # Trusted Knowledge Base (Verified Facts) └── src/ ├── config.py # Path configurations ├── extractor.py # spaCy Entity Extraction ├── retrieval_engine.py# ChromaDB Vector Search Logic └── verifier_llm.py # LLM Verification Agent (Ollama/OpenAI)
-
-🧪 How It Works (Pipeline)
-
-User Input: Accepts a natural language claim.
-
-Metadata Extraction: src/extractor.py uses spaCy to identify key entities (Dates, Organizations, Policies).
-
-Vector Retrieval: src/retrieval_engine.py converts the claim to vector embeddings and queries ChromaDB.
-
-Optimization: If the Distance Score > 0.5, the system flags the claim as "Unverifiable" immediately, skipping the LLM.
-
-LLM Verification: If the score is valid, src/verifier_llm.py sends the claim + evidence to Mistral to generate a verdict (True/False) with reasoning.
+```mermaid
+graph TD
+    A[User Input] --> B[Entity Extractor (spaCy)]
+    B --> C{Relevance Check}
+    C -- "Distance Score > 0.5" --> D[Strict Filter: 'Unverifiable']
+    C -- "Distance Score <= 0.5" --> E[Vector DB (ChromaDB)]
+    E --> F[Retrieved Context]
+    F --> G[LLM Reasoner (Mistral/Ollama)]
+    G --> H[Final Verdict & Evidence]
