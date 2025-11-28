@@ -1,15 +1,31 @@
 import streamlit as st
 import time
-from src.extractor import ClaimExtractor
-from src.retrieval_engine import FactRetriever
-from src.verifier_llm import FactChecker
+import os
+import sys
 
-# Page Config
 st.set_page_config(
-    page_title="Artikate Fact Checker",
+    page_title="TrueCheck: AI Fact Verification",
     page_icon="🔍",
     layout="centered"
 )
+
+if not os.path.exists("./chroma_db"):
+    st.warning("⚠️ Vector Database not found. Building it for the first time... (This takes ~10s)")
+    try:
+        import build_db
+        build_db.build_database()
+        st.success("✅ Database built successfully! Reloading...")
+        time.sleep(1.5)
+        st.rerun()
+    except Exception as e:
+        st.error(f"❌ Failed to build database: {e}")
+        st.stop()
+# ---------------------------------------------
+
+# Import Modules 
+from src.extractor import ClaimExtractor
+from src.retrieval_engine import FactRetriever
+from src.verifier_llm import FactChecker
 
 # Custom CSS for a cleaner look
 st.markdown("""
@@ -64,10 +80,13 @@ if verify_btn:
             analysis = nlp_tool.extract_metadata(query)
             
             # 2. Retrieve Facts & SCORES
+            # Returns tuple: (list_of_facts, list_of_distances)
             evidence, distances = rag_engine.retrieve(query, k=3)
             
-            
+            # Safety check if no distances returned
             best_score = distances[0] if distances else 2.0
+            
+            
             THRESHOLD = 0.5
 
             if best_score > THRESHOLD:
@@ -123,8 +142,8 @@ if verify_btn:
             # --- Developer Debug View ---
             with st.expander("🛠️ Developer Logs (Pipeline State)"):
                 st.json({
-                    "extracted_keywords": analysis['keywords'],
-                    "extracted_entities": analysis['entities'],
+                    "extracted_keywords": analysis.get('keywords', []),
+                    "extracted_entities": analysis.get('entities', []),
                     "vector_distances": distances,
                     "threshold_used": THRESHOLD,
                     "raw_llm_response": result
