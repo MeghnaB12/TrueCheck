@@ -1,0 +1,25 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.Python
+env/
+venv/
+.env
+
+# VS Code settings (Don't upload your local settings)
+.vscode/
+*.code-workspace
+
+# Database binaries (The user will build these locally)
+chroma_db/
+*.db
+*.sqlite3
+
+# DS_Store (Mac specific garbage file)
+.DS_Store
