@@ -124,46 +124,6 @@ Markdown
 
 ---
 
-## 📸 Demo & Screenshots
-
-| ✅ True Claim | ❌ False Claim | 🤷‍♂️ Unverifiable Claim |
-| :---: | :---: | :---: |
-| ![True Verdict](screenshots/True.png) | ![False Verdict](screenshots/False.png) | ![Unverifiable Verdict](screenshots/Unverifiable.png) |
-
----
-
-## 🚀 Key Features
-
-* **⚡ Cost-Optimized Pipeline:** Implements a **Relevance Score Threshold (0.5)**. If retrieved evidence is too weak, the system flags the claim as "Unverifiable" *immediately*, skipping the LLM call to save time and compute.
-* **🔒 Privacy-First & Local:** Runs entirely offline using **Ollama (Mistral)** and **SentenceTransformers**, ensuring no data leaves your infrastructure.
-* **🧠 Transparent Reasoning:** Unlike black-box models, TrueCheck displays the **exact retrieved evidence sources** and the **Distance Score** (similarity metric) for every verification.
-* **🛠️ Self-Healing Architecture:** The system detects missing dependencies (like the Vector DB) and automatically rebuilds them on first launch.
-
----
-
-## 🏗️ System Architecture
-
-The pipeline follows a standard RAG flow with an added optimization layer:
-
-```mermaid
-graph TD
-    A[User Input Claim] --> B[Entity Extractor (spaCy)]
-    B --> C[Vector Embedding (all-MiniLM-L6-v2)]
-    C --> D{Query ChromaDB}
-    D --> E{Relevance Check (Score < 0.5?)}
-    
-    E -- "No (Score > 0.5)" --> F[🚫 STOP: Flag as 'Unverifiable']
-    E -- "Yes (Score < 0.5)" --> G[✅ Pass Context to LLM]
-    
-    G --> H[LLM Reasoner (Mistral)]
-    H --> I[Final Verdict + Reasoning]
-🛠️ Tech Stack
-Component	Technology	Role
-Frontend	Streamlit	Interactive UI & Confidence Visualization
-Embeddings	all-MiniLM-L6-v2	SentenceTransformers for semantic search
-Vector DB	ChromaDB	Persistent storage for trusted facts
-LLM	Mistral (via Ollama)	Reasoning agent (can be swapped for GPT-4)
-NLP	spaCy (en_core_web_sm)	Named Entity Recognition (NER)
 📂 Repository Structure
 TrueCheck/
 ├── app.py                 # Main Streamlit Application
