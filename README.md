@@ -56,7 +56,6 @@ Vector DB,ChromaDB,Persistent storage for trusted facts
 LLM,Mistral (via Ollama),Reasoning agent (can be swapped for GPT-4)
 NLP,spaCy (en_core_web_sm),Named Entity Recognition (NER)
 
-```
 
 ---
 ```
