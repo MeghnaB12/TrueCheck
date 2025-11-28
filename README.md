@@ -75,7 +75,7 @@ TrueCheck/
 └── src/
     ├── __init__.py        # Package initializer
     ├── extractor.py       # spaCy Entity Extraction Logic
-    ├── retrieval_engine.py# ChromaDB Vector Search Logic
+    ├── retrieval_engine.py # ChromaDB Vector Search Logic
     └── verifier_llm.py    # LLM Verification Agent
 ```
 ---
