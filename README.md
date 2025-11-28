@@ -34,17 +34,18 @@
 The pipeline follows a standard RAG flow with an added optimization layer:
 
 ```mermaid
+
 graph TD
-    A[User Input Claim] --> B[Entity Extractor (spaCy)]
-    B --> C[Vector Embedding (all-MiniLM-L6-v2)]
-    C --> D{Query ChromaDB}
-    D --> E{Relevance Check (Score < 0.5?)}
+    A["User Input Claim"] --> B["Entity Extractor (spaCy)"]
+    B --> C["Vector Embedding (all-MiniLM-L6-v2)"]
+    C --> D{"Query ChromaDB"}
+    D --> E{"Relevance Check (Score < 0.5?)"}
     
-    E -- "No (Score > 0.5)" --> F[🚫 STOP: Flag as 'Unverifiable']
-    E -- "Yes (Score < 0.5)" --> G[✅ Pass Context to LLM]
+    E -- "No (Score > 0.5)" --> F["🚫 STOP: Flag as 'Unverifiable'"]
+    E -- "Yes (Score < 0.5)" --> G["✅ Pass Context to LLM"]
     
-    G --> H[LLM Reasoner (Mistral)]
-    H --> I[Final Verdict + Reasoning]
+    G --> H["LLM Reasoner (Mistral)"]
+    H --> I["Final Verdict + Reasoning"]
 ```
 
 ## 🛠️ Tech Stack
@@ -58,8 +59,10 @@ graph TD
 | **NLP** | spaCy (`en_core_web_sm`) | Named Entity Recognition (NER) |
 
 ---
+
+## 📂 Repository Structure
+
 ```
-📂 Repository Structure
 TrueCheck/
 ├── app.py                 # Main Streamlit Application
 ├── build_db.py            # Script to generate ChromaDB from CSV
@@ -77,7 +80,8 @@ TrueCheck/
 ```
 ---
 
-⚙️ Setup & Installation
+## ⚙️ Setup & Installation
+
 1. Prerequisites
 
    * Python 3.9+
