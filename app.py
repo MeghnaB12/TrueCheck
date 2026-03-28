@@ -22,6 +22,35 @@ if not os.path.exists("./chroma_db"):
         st.stop()
 # ---------------------------------------------
 
+# --- DUMMY CHANGES FOR PR TESTING ---
+
+# 1. Security Expert Trap: Hardcoded Secret + Shell Injection Risk
+DUMMY_API_KEY = "sk-12345abcde67890fghij12345" 
+
+def run_os_command(user_input):
+    # DANGEROUS: This allows Command Injection
+    import os
+    os.system("echo " + user_input)
+
+# 2. Senior Dev Trap: O(n^2) Complexity + No Error Handling
+def process_data_inefficiently(data_list):
+    """This function is intentionally slow and fragile."""
+    results = []
+    for item in data_list:
+        for other_item in data_list: # Nested loop is O(n^2)
+            if item == other_item:
+                results.append(item)
+    
+    # Missing try-except block here
+    final_data = results[0] # Will crash if list is empty
+    return final_data
+
+# 3. Clean Code Trap: Vague variable names
+def do_stuff(a, b):
+    x = a + b
+    return x
+# ------------------------------------
+
 # Import Modules 
 from src.extractor import ClaimExtractor
 from src.retrieval_engine import FactRetriever
